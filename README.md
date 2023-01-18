@@ -1,3 +1,7 @@
+Build & Test Signal Android on Harness CI
+=======================================
+This is a fork of Signal Android project. This repo can be used to demo the new capabilities of Harness CI. Please follow [these instructions](https://github.com/harness-community/Signal-Android/blob/main/.harness/README.md) on how to clone this repo and see the results yourself.
+
 # Signal Android 
 
 Signal is a simple, powerful, and secure messenger.

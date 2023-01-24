@@ -1,13 +1,13 @@
 pipeline:
   name: test-signal-public-release
   identifier: testsignalpublicrelease
-  projectIdentifier: DhrubaCI
+  projectIdentifier: Signal-Android-Test
   orgIdentifier: default
   tags: {}
   properties:
     ci:
       codebase:
-        connectorRef: dhrubaaccountconnector
+        connectorRef: scm-connector
         repoName: signal-android
         build: <+input>
   stages:

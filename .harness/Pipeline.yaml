@@ -1,7 +1,7 @@
 pipeline:
   name: test-signal-public-release
   identifier: testsignalpublicrelease
-  projectIdentifier: Signal-Android-Test
+  projectIdentifier: default
   orgIdentifier: default
   tags: {}
   properties:

@@ -1,0 +1,55 @@
+pipeline:
+  name: test-signal-public-release
+  identifier: testsignalpublicrelease
+  projectIdentifier: default
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: scm-connector
+        repoName: signal-android
+        build: <+input>
+  stages:
+    - stage:
+        name: android
+        identifier: android
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: validate gradle wrapper
+                  identifier: validate_gradle_wrapper
+                  spec:
+                    shell: Sh
+                    command: ./gradlew wrapper
+              - step:
+                  type: Run
+                  name: Remove Android 31
+                  identifier: Remove_Android_31
+                  spec:
+                    shell: Sh
+                    command: $ANDROID_HOME/tools/bin/sdkmanager --uninstall "platforms;android-31"
+                  when:
+                    stageStatus: All
+                  failureStrategies: []
+              - step:
+                  type: Run
+                  name: Build with Gradle
+                  identifier: Build_with_Gradle
+                  spec:
+                    shell: Sh
+                    command: ./gradlew qa
+                  when:
+                    stageStatus: All
+                  failureStrategies: []
+  allowStageExecutions: true
